@@ -75,12 +75,26 @@ graph TD;
 
 ## 🚀 Запуск инференс-сервиса (локально)
 
-### 1. Установка зависимостей
+### 1. Клонирование репозитория
+```bash
+git clone https://github.com/Shvidero/MLops_course_work_5_semester.git
+cd MLops_course_work_5_semester
+```
+
+### 2. Установка зависимостей
+
+Создайте виртуальное окружение и установите зависимости:
 
 ```bash
+python -m venv .venv
+source .venv/bin/activate      # Linux / macOS
+.venv\Scripts\activate         # Windows
+
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
-### 2. Запуск FastAPI
+
+FastAPI
 ```
 uvicorn app:app --reload
 ```
