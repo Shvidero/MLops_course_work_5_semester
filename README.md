@@ -38,37 +38,46 @@
 ## 🔁 MLOps-пайплайн
 ```mermaid
 graph TD;
-    A[Парсинг постов при помощи VkApi] --> B[EDA и предварительная обработка постов];
-    B --> C[Разметка тональности при<br/>помощи предобученной модели RuBERT];
+    A[Парсинг постов<br>при помощи VkApi] --> B[EDA и предварительная<br>обработка текста];
+    B --> C[Разметка тональности при<br>помощи предобученной<br>модели RuBERT];
     C --> D[TF-IDF векторизация];
-    D --> E[Обучение моделей<br/>LogisticRegression - основная, RandomForest - альтернативная];
-    E --> F[Трэкинг экспериментов MLflow];
+    D --> E[Обучение моделей<br>LogisticRegression -<br> основная, RandomForest - <br>альтернативная];
+    E --> F[Трэкинг экспериментов<br>MLflow];
     F --> G[Инференс-сервис FastAPI];
     G --> H[Контейнеризация Docker];
-    H --> I[Пользовательский интерфейс UI];
+    H --> I[Пользовательский<br>интерфейс UI];
 ```
 
 ## 📁 Структура репозитория
 
 ```
 .
-├── .gitignore
-├── app.py # FastAPI инференс-сервис
-├── ui.py # UI на Streamlit
-├── train.py # обучение моделей
-├── config.yaml # конфигурации обучения и инференса
-├── requirements.txt # зависимости
-├── Dockerfile # Docker-образ сервиса
 ├── artifacts/
 │ ├── model.pkl # обученная модель
 │ └── vectorizer.pkl # TF-IDF векторизатор
 ├── assets/
 │ └── image.png
-├── Posts.csv # raw data
-├── processed_data.csv
-├── MODEL_CARD.md
+├── data/
+│ ├── Posts.csv # raw data
+│ ├── preprocessed_ds.csv # dataset v1
+│ └── labeled_ds.csv # dataset v2
+├── .gitignore
 ├── DATASET_CARD.md
-└── README.md
+├── MODEL_CARD.md
+├── README.md
+├── app.py # FastAPI инференс-сервис
+├── config.py
+├── config.yaml # конфигурации обучения и инференса
+├── dockerfile # Docker-образ сервиса
+├── labeling.py
+├── main.py
+├── mlflow.db
+├── parsing.py
+├── prepare.py
+├── preprocessing.py
+├── requirements.txt # зависимости
+├── train.py # обучение моделей
+└── ui.py # UI на Streamlit
 ```
 
 ---
