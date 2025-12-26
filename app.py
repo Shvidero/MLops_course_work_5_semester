@@ -3,7 +3,8 @@ from pydantic import BaseModel
 from typing import List
 import joblib
 
-app = FastAPI(title="Sentiment Analysis API")
+# Создаем экземпляр fast api
+app = FastAPI(title="Sentiment Analysis API") 
 
 # Загружаем модель и векторизатор
 model = joblib.load("artifacts/model.pkl")
@@ -18,6 +19,7 @@ class PredictionOut(BaseModel):
     sentiment: int
     score: float
 
+# Эндпоинты
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -33,6 +35,7 @@ def predict(data: TextListIn):
     # Предсказания
     probs = model.predict_proba(X)
     
+    # формирование отчета
     results = []
     for p in probs:
         label = int(p.argmax())
